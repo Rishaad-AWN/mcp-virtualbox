@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "mcp-virtualbox": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/mcp-virtualbox-launch"
+    }
+  }
+}

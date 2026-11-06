@@ -1,0 +1,25 @@
+{
+  "$schema": "https://claude.ai/schemas/plugin.json",
+  "name": "mcp-virtualbox",
+  "version": "1.0.0",
+  "description": "VirtualBox MCP server (Go). Provides 50 MCP tools to create, install, and operate VirtualBox VMs: a screenshot + keyboard/mouse vision loop for bare-metal OS installation, then fast text-based control via Guest Additions, SSH, or WinRM. Single static binary; absolute mouse via the VirtualBox web service (auto-started on demand).",
+  "author": {
+    "name": "Rishaad-AWN",
+    "url": "https://github.com/Rishaad-AWN"
+  },
+  "homepage": "https://github.com/Rishaad-AWN/mcp-virtualbox",
+  "repository": "https://github.com/Rishaad-AWN/mcp-virtualbox",
+  "license": "MIT",
+  "keywords": [
+    "virtualbox",
+    "vm",
+    "mcp",
+    "model-context-protocol",
+    "automation",
+    "go",
+    "vision-loop",
+    "os-installation",
+    "guest-additions",
+    "claude-code"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://claude.ai/schemas/marketplace.json",
+  "name": "mcp-virtualbox",
+  "owner": {
+    "name": "Rishaad-AWN",
+    "url": "https://github.com/Rishaad-AWN"
+  },
+  "metadata": {
+    "description": "Marketplace for mcp-virtualbox — a single-binary Go MCP server for full VirtualBox VM control (vision loop + text mode).",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "mcp-virtualbox",
+      "source": ".",
+      "version": "1.0.0",
+      "description": "VirtualBox MCP server (Go) - 50 tools for full VM control: create/install/operate VMs via screenshot+keyboard/mouse vision loop and text mode (Guest Additions, SSH, WinRM).",
+      "category": "automation",
+      "keywords": [
+        "virtualbox",
+        "vm",
+        "mcp",
+        "model-context-protocol",
+        "automation",
+        "go",
+        "vision-loop",
+        "os-installation"
+      ],
+      "license": "MIT",
+      "homepage": "https://github.com/Rishaad-AWN/mcp-virtualbox",
+      "repository": "https://github.com/Rishaad-AWN/mcp-virtualbox",
+      "author": {
+        "name": "Rishaad-AWN",
+        "url": "https://github.com/Rishaad-AWN"
+      }
+    }
+  ]
+}

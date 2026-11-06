@@ -1,0 +1,22 @@
+# Build output
+/mcp-virtualbox
+/dist/
+*.exe
+
+# Test / coverage
+*.out
+coverage.txt
+
+# VM artifacts (in case anything runs here)
+*.iso
+*.vdi
+*.vbox
+*.vbox-prev
+*.nvram
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+/mcp-virtualbox-go

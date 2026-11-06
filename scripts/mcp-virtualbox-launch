@@ -1,0 +1,48 @@
+#!/bin/sh
+# Launcher for the mcp-virtualbox Claude Code plugin.
+#
+# Resolves a mcp-virtualbox binary with no Go toolchain required:
+#   1. If `mcp-virtualbox` is already on PATH (e.g. via `go install`), use it.
+#   2. Otherwise download the matching prebuilt release binary into the plugin's
+#      bin/ directory (cached across runs) and exec it.
+#
+# To force an update, delete "$CLAUDE_PLUGIN_ROOT/bin/mcp-virtualbox".
+set -eu
+
+if command -v mcp-virtualbox >/dev/null 2>&1; then
+	exec mcp-virtualbox "$@"
+fi
+
+ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd -- "$(dirname -- "$0")/.." && pwd)}"
+BINDIR="$ROOT/bin"
+BIN="$BINDIR/mcp-virtualbox"
+
+if [ ! -x "$BIN" ]; then
+	os=$(uname -s | tr '[:upper:]' '[:lower:]')
+	arch=$(uname -m)
+	case "$arch" in
+	x86_64 | amd64) arch=amd64 ;;
+	aarch64 | arm64) arch=arm64 ;;
+	esac
+	case "$os" in
+	linux) os=linux ;;
+	darwin) os=darwin ;;
+	*) os=linux ;;
+	esac
+
+	url="https://github.com/Rishaad-AWN/mcp-virtualbox/releases/latest/download/mcp-virtualbox_${os}_${arch}.tar.gz"
+	tmp=$(mktemp -d)
+	trap 'rm -rf "$tmp"' EXIT
+	echo "mcp-virtualbox: downloading prebuilt binary ($os/$arch)..." >&2
+	if ! curl -fsSL "$url" -o "$tmp/pkg.tgz"; then
+		echo "mcp-virtualbox: download failed from $url" >&2
+		echo "Install manually with: go install github.com/Rishaad-AWN/mcp-virtualbox@latest" >&2
+		exit 1
+	fi
+	tar -xzf "$tmp/pkg.tgz" -C "$tmp"
+	mkdir -p "$BINDIR"
+	mv "$tmp/mcp-virtualbox" "$BIN"
+	chmod +x "$BIN"
+fi
+
+exec "$BIN" "$@"
